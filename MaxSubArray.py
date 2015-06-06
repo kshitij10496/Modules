@@ -30,12 +30,14 @@ def max_crossing_subarray(A,low,mid,high):
     cross_sub = index(left_max,right_max,total)
     return cross_sub
 
+sumtotal = 0
 def max_subarray(A,low,high):
 
 	if low >= 0 and high < len(A):
 		base = index(low,high,A[low])
-		if high == low :
-			return base
+		if high == low:
+			global sumtotal += A[low]
+			return sumtotal
 		else:
 			mid = ( high + low )/2
 			left = max_subarray(A,low,mid)
@@ -53,7 +55,7 @@ def main():
 
 	print "Enter a sequence:"
 	A = map(int , raw_input().split())
-	result = max_subarray(A,0,len(A))
-	
+	result = max_subarray(A,0,len(A)-1)
+	result.printing()
 
 main()
